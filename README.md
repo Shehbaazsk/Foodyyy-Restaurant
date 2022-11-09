@@ -3,8 +3,11 @@
 # Install and Activate Virtual-environment
 
  pip install virtualenv
+ 
  virtualenv your_environment_name
+ 
  cd your_environment_name
+
 ./scripts/activate
 
 # Import project in virtualenv
