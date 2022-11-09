@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+<style>
+    body{
+        background-image: url("{%static 'restaurant/images/homebg.png'%}");
+        background-position: center center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: auto;
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+{% endblock style %}
+
+{% block title %}Home | Foodyyy!{% endblock title%}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col">
+            <p class="fs-4 " style="color: #ff6426;padding-top: 9rem;">&DDotrahd; Discover Your Taste !<!DOCTYPE html></p>
+            <h2 class="text-uppercase  pt-2 fw-bolder" style="font-size: 42px;">&emsp; we believe good food offers great smile .</h2>
+            <p class="fst-italic fs-6 pt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis eligendi vitae porro nemo dolor officiis odio autem, harum earum repellat itaque iusto eveniet cupiditate ipsa.</p>
+            <a class="mt-4 btn fw-semibold " style="border-style: solid ;border-width: 3px; border-color: #ff6426; color: #ff6426;" href="{% url 'restaurant:contact' %}">Order Online</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

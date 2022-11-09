@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Poppins&display=swap" rel="stylesheet">
+    <!-- css link  -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!-- font awesome  -->
+    <script src="https://kit.fontawesome.com/af7161321c.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{% static 'images/icon.png' %}" type="image/x-icon">
+    <title> {% block title %}Foodyyy!|Shehbaaz{% endblock title %} </title>
+    {% block style %}
+    <style>
+        body{
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+        h1,h2,h3,h4,h5,h6,a{
+            font-family: 'Josefin Sans', sans-serif;
+        }
+    </style>
+    {% endblock style %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-md p-3 bg-light border-bottom border-2" >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'restaurant:home' %}"><img src="{% static 'images/logo.png' %}" class="img-fluid ps-3" alt=""></a>
+          <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center " id="navbarNav">
+            <ul class="nav justify-content-center border-bottom border-2 border-secondary">
+                <li class="nav-item">
+                  <a class="nav-link active" style="color: #ff6426;"  href="{% url 'restaurant:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'restaurant:menu' %}">Menu</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'restaurant:about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'restaurant:contact' %}">Contact</a>
+                </li>
+              </ul>
+          </div>
+          {% if request.user.is_authenticated %}
+          <ul class="nav nav-pills nav-fill">
+            <li class="nav-item m-2 mt-sm-3 mt-4">
+              <a class="nav-link active" aria-current="page" href="{% url 'restaurant:cartlist' %}">Cart <i class="fa-solid fa-cart-shopping"></i></a>
+            </li>
+          <div class="btn-group btn me-5 mt-lg-1 mt-3">
+            <button type="button" class="btn btn-outline-light text-dark  dropdown-toggle" style="border: 2px solid #ff6426;" data-bs-toggle="dropdown" aria-expanded="false">
+              accounts
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'order:orders'%}">Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:changepassword' %}">Change Password</a></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a></li>                    
+            </ul>
+          </div>
+          {% else %}
+          <ul class="nav mx-lg-3 mx-0 mt-2 ">
+            <li class="nav-item me-lg-3 me-2">
+              <a class="btn fw-semibold" style="color: #ff6426;" href="{% url 'accounts:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-dark" href="{% url 'accounts:signup' %}">Sign Up</a>
+            </li>       
+          </ul> 
+          {% endif %}
+        </div>
+      </nav>
+
+  <div class="container-fluid py-5" >
+    
+
+    {% block content %}
+    
+    {% endblock content %}
+
+  </div>
+  <footer class="d-block  position-static fixed-bottom">
+    <div class="container-fluid border-top border-2">
+      <div class="container-lg">
+        <div class="row pt-2">
+          <div class="col-lg-4 my-3 text-center">
+            <h3 class="border-bottom border-success">Navigation Links</h3>
+            <ul class="nav flex-column">
+              <li class="nav-item "><a href="{% url 'restaurant:home' %}" class="nav-link">Home</a></li>
+              <li class="nav-item "><a href="{% url 'restaurant:menu' %}" class="nav-link">Menu</a></li>
+              <li class="nav-item "><a href="{% url 'restaurant:about' %}" class="nav-link">About</a></li>
+              <li class="nav-item "><a href="{% url 'restaurant:contact' %}" class="nav-link">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 my-3 text-center ">
+            <h3 class="border-bottom border-success ">Opening Hours</h3>
+            <h6 class="pt-4">Everyday</h6>
+            <h6 >10.00 AM - 12.00 PM</h6>
+          </div>
+          <div class="col-lg-4 my-3 text-center ">
+            <h3 class="border-bottom border-success">Contact Us</h3>
+            <h6 class="pt-4"><i class="fa-solid fa-map-location"></i> Location</h6>
+            <h6><i class="fa-solid fa-phone"></i>  +91 1234567890</h6>
+            <h6><i class="fa-solid fa-envelope"></i> demo@gmail.com</h6>
+          </div>
+        </div>
+      </div>
+    </div><hr>
+  </footer>
+    <script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+</body>
+</html>

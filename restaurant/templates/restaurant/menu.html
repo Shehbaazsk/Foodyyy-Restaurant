@@ -1,0 +1,65 @@
+{% extends 'restaurant/home.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Menu | Foodyyy!{% endblock title%}
+
+{% block content %}
+<div class="container">
+  <div class="row row-cols-1 justify-content-center">
+    {% if messages %}
+    <div class="col-lg-4 justify-content-center">
+    <ul class=" text-center text-capitalize">
+        {% for message in messages %}
+       <li class="text-center nav-link  rounded-pill text-bg-warning"> {{ message }}</li><hr>
+        {% endfor %}
+    </ul>
+    </div>  
+    {% endif %} 
+  </div>
+  <div class="row justify-content-around">
+    <div class="col-6">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="col-4">
+
+      <a class="btn btn-sm btn-primary" href="{% url 'restaurant:menu' %}" role="button">Show All </a>
+<div class="btn-group">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Categories
+  </button>
+  <ul class="dropdown-menu">
+    {%for c in categories%}
+    <li><a class="dropdown-item" href="{{c.get_absolute_url}}">{{c}}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="row row-cols-lg-2 row-cols-1 justify-content-center">
+        {% for item in items %}
+        <div class="col-lg-5 col-11 m-4">
+            <div class="card">
+                <img src="{{item.image.url}}" class="card-img-top img-fluid" alt="Images" style="max-height: 16rem;" >
+                <div class="card-body"><hr>
+                  <h5 class="card-title fw-bold text-center">{{item.name}}</h5><hr>
+                  <p class="card-text text-">&emsp; {{item.description | truncatewords:18}}</p>
+                  <a href="{{item.get_absolute_url}}" class="btn btn-primary">View Details</a>
+                  <h6  class="float-end btn btn-success">₹​ {{item.price}}</h6><hr>
+                  <form class='d-inline-block' action="{% url 'restaurant:addtocart' item.id %}" method="post">
+                  {% csrf_token %}
+                    {{form|crispy}}
+                    <button class='btn float-end btn-outline-primary ' type="submit">Add to Cart</button>
+                  <!-- <a href="{% url 'restaurant:addtocart' item.id %}" class="btn float-end btn-primary">Add to Cart</a> -->
+                </form>
+                </div>
+              </div>
+          </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

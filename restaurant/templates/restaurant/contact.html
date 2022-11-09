@@ -1,0 +1,37 @@
+{% extends 'restaurant/home.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Contact | Shehbaaz {% endblock title%}
+
+{% block content %}
+<div class="container p-lg-5 p-3">
+    <div class="row ">
+        <div class="col-lg-6 p-lg-5 p-3">
+            <img src="{% static 'restaurant/images/contact.png' %}" alt="" class="img-fluid p-5 ps-3 mx-auto d-block">
+        </div>
+        <div class="col-lg-6 d-block">
+            <h2 class="pb-4 text-center">Get in Touch</h2>
+            <form  method="post" class="form-check py-1">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-grid gap-2 col-6 mx-auto py-3">
+                    <button class="btn text-light" style="background-color: #59B846;" type="submit">Send</button>
+                </div>
+            </form>
+        </div>  
+    </div>
+    <div class="row justify-content-center mt-5 ">
+        <div class="col-10 col-md-4 ">
+            <h5 style="color: #59B846;"><i class="fa-solid fa-sm fa-map-location"></i> Address:</h5>
+            <p class="text-muted">&emsp; 480 Lake Vanilla Beach, IN-400041</p>
+            <h5 style="color: #59B846;"><i class="fa-sm fa-solid fa-phone"></i> Phone:</h5>
+            <p class="text-muted">&emsp; +91 1234567890</p>
+            <p class="text-muted">&emsp; +91 0987654321</p>
+            <h5 style="color: #59B846;"><i class="fa-solid fa-sm fa-envelope"></i> Email:</h5>
+            <p class="text-muted">&emsp;demo@gmail.com</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

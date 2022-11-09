@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Checkout{% endblock title%}
+
+{% block content %}
+
+<div class="container">
+    {% with cart_quantity=carts|length %}
+    {% if cart_quantity > 0 %}
+    <div class="row justify-content-center row-cols-lg-2 row-cols-1 ">
+        <div class="col-lg-5 col-10 ">
+            <h2>Checkout Details</h2><hr>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form|crispy}}
+                <div class="d-grid gap-2 col-6 mx-auto py-3">
+                    <button class="btn btn-success"  type="submit">COD | Place Order</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-1 d-none d-lg-block">
+
+        </div>
+        <div class="col-lg-5 col-12">
+            <h2 class="text-center" >Order Summary</h2><hr>
+            <table class="table table-bordered">
+                <thead class="table-success">
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for cart in carts %}
+                  <tr>
+                    <td>{{cart.item}}</td>
+                    <td>{{cart.item.sub_category.category}}</td>
+                    <td>{{cart.quantity}} x {{cart.item.price|stringformat:'d'}}</td>
+                    <td>{{cart.get_total_price}}</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table><hr>
+              <h5 >Grand Total <span class="float-end">Rs {{cart_price}}</span> </h5>
+        </div>
+    </div>
+    {% else %}
+    <h2>You don't have order</h2>
+
+    {% endif %}
+    {% endwith %}
+</div>
+
+{% endblock content %}

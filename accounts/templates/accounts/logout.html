@@ -1,0 +1,9 @@
+{% extends 'restaurant/home.html' %}
+{% block title %}Logout | Foodyyy! {% endblock title %}
+{% block content %}
+<div class="container">
+<h3 class="text-capitalize">you have been logged out sucessfully...</h3>
+<h6>Have A Nice Day !</h6>
+<p class="h6 mt-5">A bit more to do ?    <a href="{% url 'accounts:login' %}" class=" text-center btn-sm btn btn-outline-success " style="border: 2.5px solid #59B846;">Login Again</a></p>
+</div>
+{% endblock content %}
