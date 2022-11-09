@@ -1,4 +1,5 @@
 # Foodyyy-Restaurant
+A restaurant app where you can order food onlne via contact or place an order.
 
 # Install and Activate Virtual-environment
 
