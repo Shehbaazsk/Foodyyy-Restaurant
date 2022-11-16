@@ -69,7 +69,7 @@
         {% if total_item > 0 %}
         <div class="d-inline-block text-center  m-3 ">
           <a href="{% url 'restaurant:menu' %}" class="btn btn-outline-primary col-3" type="button">Continue Shopping</a>
-          <a href="#" class="btn btn-outline-success col-3" type="button">Check Out</a>
+          <a href="{% url 'order:checkout' %}" class="btn btn-outline-success col-3" type="button">Check Out</a>
         </div>
         {% else %}
         <div class="d-block  text-center  mt-3 ">
